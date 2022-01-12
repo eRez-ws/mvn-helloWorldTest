@@ -8,56 +8,32 @@
   <name>hello-world-test</name>
   <url>http://maven.apache.org</url>
   <dependencies>
-<dependency>
-  <groupId>org.apache.maven.scm</groupId>
-  <artifactId>maven-scm-providers-svn</artifactId>
-  <version>1.11.2</version>
-  <type>pom</type>
-</dependency>
-<dependency>
-	<groupId>io.netty</groupId>
-	<artifactId>netty-all</artifactId>
-	<version>4.0.33.Final</version>
-</dependency>
-
-
-    <!--dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-    </dependency>
 	<dependency>
-		<groupId>org.projectlombok</groupId>
-		<artifactId>lombok</artifactId>
-		<version>1.16.20</version>
+  		<groupId>org.apache.maven.scm</groupId>
+  		<artifactId>maven-scm-providers-svn</artifactId>
+  		<version>1.11.2</version>
+  		<type>pom</type>
 	</dependency>
 	<dependency>
-	  <groupId>org.apache.activemq</groupId>
-	  <artifactId>activemq-web-console</artifactId>
-	  <version>5.15.9</version>
-	  <type>war</type>
-	</dependency>
-	<dependency>
-	  <groupId>org.apache.activemq</groupId>
-	  <artifactId>activemq-web-console</artifactId>
-	  <version>5.15.9</version>
-	  <type>pom</type>
-	</dependency-->
+		<groupId>io.netty</groupId>
+		<artifactId>netty-all</artifactId>
+		<version>4.0.33.Final</version>
+	</dependency>   
   </dependencies>
   
   <build>
-  <plugins>
-  <plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<archive>
-						<manifest>
-							<mainClass>com.mycompany.app.App</mainClass>
-						</manifest>
-					</archive>
-				</configuration>
-			</plugin>
+  	<plugins>
+  		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-jar-plugin</artifactId>
+			<configuration>
+				<archive>
+					<manifest>
+						<mainClass>com.mycompany.app.App</mainClass>
+					</manifest>
+				</archive>
+			</configuration>
+		</plugin>
 		<plugin>
 			<groupId>org.whitesource</groupId>
 			<artifactId>whitesource-maven-plugin</artifactId>
@@ -72,6 +48,25 @@
 				<forceCheckAllDependencies>true</forceCheckAllDependencies>				
 			</configuration>
 		</plugin>
+		<plugin>
+                	<groupId>org.apache.maven.plugins</groupId>
+                	<artifactId>maven-enforcer-plugin</artifactId>
+                	<executions>
+                    		<execution>
+                        		<id>enforce</id>
+                        		<configuration>
+                            			<rules>
+                                			<requireJavaVersion>
+                                    				<version>[8)</version>
+                                			</requireJavaVersion>
+                            			</rules>
+                        		</configuration>
+                        		<goals>
+                            			<goal>enforce</goal>
+                        		</goals>
+                    		</execution>
+                	</executions>
+            	</plugin>
 	</plugins>
-	</build>
+</build>
 </project>
